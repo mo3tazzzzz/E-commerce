@@ -1,0 +1,41 @@
+
+<section class="w-1/2 bg-gray-200 rounded-lg shadow-lg mx-auto p-4">
+    <h1 class="text-center text-green-600 text-3xl font-bold">Pay Now :</h1>
+    <form [formGroup]="paymentForm" (ngSubmit)="submitForm()" >
+ 
+        <div class="mb-6">
+         
+    <label for="uDatails" class="block mb-2 text-lg font-light text-green-600">Details :</label>
+    <input placeholder="Enter your details..." formControlName="details" type="text" id="uDatails" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5">
+    
+</div>
+
+        <div class="mb-6">
+         
+    <label for="uPhone" class="block mb-2 text-lg font-light text-green-600">Phone :</label>
+    <input placeholder="Enter your phone..." formControlName="phone" type="tel" id="uDatails" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5">
+    
+</div>
+
+        <div class="mb-6">
+         
+    <label for="uCity" class="block mb-2 text-lg font-light text-green-600">City :</label>
+    <input placeholder="Enter your city..." formControlName="city" type="text" id="uCity" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5">
+    
+</div>
+
+  
+   
+
+
+
+
+<div class="flex justify-end">
+<button type="submit" [disabled]="paymentForm.invalid"
+ class="bg-green-600  text-white py-2 px-4 my-2 rounded-lg cursor-pointer hover:bg-green-500 transition disabled:bg-green-200 disabled:cursor-default">
+   submit
+
+</button>
+   </div> </form>
+</section>
+

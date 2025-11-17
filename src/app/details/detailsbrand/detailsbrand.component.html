@@ -1,0 +1,54 @@
+ @if (brandData) { 
+ <section >
+    <div >
+        <h3>Populer Products:-</h3>
+
+
+       <div class=" parent grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+
+            @for (brand of brandData; track brand._id) {
+                <div class="relative card border border-green-400/50 rounded-md overflow-hidden shadow relative p-1">
+                   <div [routerLink]="['/details', brand._id]" >
+                     <div class="card-img">
+                        <img [src]="brand.imageCover" class="w-full h-[250px] object-contain" alt="">
+                    </div>
+                    <div class="card-body px-2 py-4">
+                        <h4 class="text-green-500 text-xs">{{brand.category.name}}</h4>
+                        <h3 class="font-medium">{{brand.title.split( ' ', 2).join(' ')}}</h3>
+                        <div class="flex justify-between items-center">
+                            <span>{{brand.price}} EGP</span>
+                            <div class="flex items-center">
+                                <i class="fa fa-star text-yellow-300 "></i>
+                                <span class="text-gray-500">{{brand.ratingsAverage}}</span>
+                            </div>
+                        </div>
+                    </div>
+                   </div>
+                                                          <!-- زرار القلب لإضافة المنتج للـ wishlist -->
+<button 
+  (click)="removeItem(brand._id)"  
+  class="absolute top-2 right-2 z-10 text-xl"
+>
+  <i 
+    class="fa-heart"
+    [class.fa-solid]="wishIds.includes(brand._id)"
+    [class.fa-regular]="!wishIds.includes(brand._id)"
+    [class.text-red-600]="wishIds.includes(brand._id)"
+    [class.text-gray-400]="!wishIds.includes(brand._id)"
+  ></i>
+</button>
+
+                </div>
+
+            }
+             
+        </div>
+    </div>
+</section> 
+
+
+
+
+
+
+} 

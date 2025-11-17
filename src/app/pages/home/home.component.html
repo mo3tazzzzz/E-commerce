@@ -1,0 +1,82 @@
+<section>
+    <div class="parent grid grid-cols-[70%_30%] ">
+
+        <div>
+
+             <owl-carousel-o [options]="mainSliderOptins">
+    <ng-template carouselSlide><img src="/images/slider-1.png" class="w-full h-[300px]" alt=""> </ng-template>  
+    <ng-template carouselSlide><img src="/images/slider-4.jpeg" class="w-full h-[300px]" alt=""> </ng-template>  
+    <ng-template carouselSlide><img src="/images/slider-5.jpeg" class="w-full h-[300px]" alt=""></ng-template>  
+  </owl-carousel-o>
+            
+        </div>
+        <div>
+            <img src="/images/slider-2.jpeg" class="w-full h-[150px]" alt="">
+            <img src="/images/slider-3.jpeg" class="w-full h-[150px]" alt="">
+        </div>
+    </div>
+</section>
+
+<section>
+   <h3>Populer Categoris :-</h3>
+   <div>
+        <owl-carousel-o [options]="customOptions">
+
+    @for (cat of myCategoris(); track cat._id) {
+      <ng-template carouselSlide >
+        <img [src]="cat.image" class="w-full h-[250px] object-cover" alt="">
+        <h3>{{cat.name}}</h3>
+      </ng-template>
+    }
+
+  </owl-carousel-o>
+   </div>
+</section>
+
+
+<section >
+    <div >
+        <h3>Populer Products:-</h3>
+
+        <input  type="text" placeholder="Search..." [(ngModel)]="searchItem" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-1/2 mx-auto p-2.5 my-4">
+
+        <div class="parent grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+
+            @for (prod of myProducts().slice(0 , 20) | search : searchItem ; track prod._id) {
+                <div class=" card border border-green-400/50 rounded-md overflow-hidden shadow relative p-1">
+                   <div [routerLink]="['/details', prod._id]" >
+                     <div class="card-img">
+                        <img [src]="prod.imageCover" class="w-full h-[250px] object-contain" alt="">
+                    </div>
+                    <div class="card-body px-2 py-4">
+                        <h4 class="text-green-500 text-xs">{{prod.category.name}}</h4>
+                        <h3 class="font-medium">{{prod.title.split( ' ', 2).join(' ')}}</h3>
+                        <div class="flex justify-between items-center">
+                            <span>{{prod.price}} EGP</span>
+                            <div class="flex items-center">
+                                <i class="fa fa-star text-yellow-300 "></i>
+                                <span class="text-gray-500">{{prod.ratingsAverage}}</span>
+                            </div>
+                        </div>
+                    </div>
+                   </div>
+                        <!-- زرار القلب لإضافة المنتج للـ wishlist -->
+<button 
+  (click)="removeItem(prod._id)"  
+  class="absolute top-2 right-2 z-10 text-xl"
+>
+  <i 
+    class="fa-heart"
+    [class.fa-solid]="wishIds.includes(prod._id)"
+    [class.fa-regular]="!wishIds.includes(prod._id)"
+    [class.text-red-600]="wishIds.includes(prod._id)"
+    [class.text-gray-400]="!wishIds.includes(prod._id)"
+  ></i>
+</button>
+                    <button (click)="addProductToCart(prod._id)" class="py-2 px-4 text-white rounded-lg w-[90%] block mx-auto bg-green-600 cursor-pointer">Add to cart</button>
+                </div>
+            }
+             
+        </div>
+    </div>
+</section>

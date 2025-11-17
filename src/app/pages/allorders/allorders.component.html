@@ -1,0 +1,109 @@
+<div class="max-w-5xl mx-auto mt-8 p-5">
+  <div class="bg-white shadow-xl rounded-2xl p-6">
+    <div class="flex justify-between items-center border-b pb-3">
+      <div>
+        <h2 class="text-2xl font-bold text-green-600">Orders</h2>
+      </div>
+    </div>
+
+    <div class="mt-6 space-y-5">
+      @for (order of ordreData; track order._id) {
+        <div class="border rounded-2xl p-5 bg-gray-50 hover:shadow-lg transition">
+          <h3 class="text-lg font-bold text-gray-800 mb-2">
+            Order ID: {{ order.id }}
+          </h3>
+
+          <!-- Products inside the order -->
+          <div class="space-y-4">
+            @for (item of order.cartItems; track item._id) {
+              <div
+                class="border rounded-xl p-4 flex gap-4 items-center bg-white hover:shadow-md transition"
+              >
+                <!-- Product Image -->
+                <img
+                  [src]="item.product.imageCover"
+                  [alt]="item.product.title"
+                  class="w-28 h-24 object-cover rounded-md border"
+                />
+
+                <!-- Product Info -->
+                <div class="flex-1">
+                  <h3 class="font-semibold text-gray-800">
+                    {{ item.product.title }}
+                  </h3>
+                  <div class="text-sm text-gray-500 mt-1">
+                    <p>
+                      Brand:
+                      <strong>{{ item.product.brand.name }}</strong>
+                    </p>
+                    <p>
+                      Category:
+                      <strong>{{ item.product.category.name }}</strong>
+                    </p>
+                  </div>
+
+                  <div class="mt-2 flex flex-wrap gap-2 text-sm">
+                    <span class="px-2 py-1 bg-gray-100 rounded"
+                      >Qty: <strong>{{ item.count }}</strong></span
+                    >
+                    <span class="px-2 py-1 bg-gray-100 rounded"
+                      >Unit: <strong>{{ item.price }} EGP </strong></span
+                    >
+                    <span class="px-2 py-1 bg-yellow-50 rounded"
+                      >Rate:
+                      <strong>{{ item.product.ratingsAverage }}</strong> ★
+                      ({{ item.product.ratingsQuantity }})</span
+                    >
+                  </div>
+                </div>
+
+                Price 
+                <div class="text-right">
+                  <p class="font-bold text-lg text-green-600">
+                    {{ item.price * item.count  }}   EGP
+                  </p> 
+                </div>
+              </div>
+            }
+          </div>
+
+         Shipping Info & Summary
+          <div class="mt-6 border-t pt-4 grid md:grid-cols-2 gap-6">
+            <div>
+              <h3 class="font-semibold text-gray-700">Shipping Info</h3>
+              <p class="text-sm">Name: {{ order.shippingAddress.details }}</p>
+              <p class="text-sm">Phone: {{ order.shippingAddress.phone }}</p>
+              <p class="text-sm">City: {{ order.shippingAddress.city }}</p>
+            </div>
+
+            <div>
+              <h3 class="font-semibold text-gray-700">Order Summary</h3>
+              <p class="text-sm mt-1">
+                Payment Method:
+                <strong class="capitalize">{{ order.paymentMethodType }}</strong>
+              </p>
+              <p class="text-sm">
+                Paid:
+                <strong [class.text-green-600]="order.isPaid" [class.text-red-500]="!order.isPaid">
+                  {{ order.isPaid ? 'Yes' : 'No' }}
+                </strong>
+              </p>
+              <p class="text-sm">
+                Delivered:
+                <strong [class.text-green-600]="order.isDelivered" [class.text-red-500]="!order.isDelivered">
+                  {{ order.isDelivered ? 'Yes' : 'No' }}
+                </strong>
+              </p>
+              <p class="text-lg font-bold mt-2">
+                Total:
+                 <span class="text-green-600">
+                  {{ order.totalOrderPrice }}    EGP
+                </span> 
+              </p>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</div>

@@ -1,0 +1,92 @@
+<!-- @if(categData){
+    <section>
+  <h1 class="text-4xl text-green-600 text-center">Category Details</h1>
+
+  <div class="w-200 items-center mx-auto">
+    <div>
+      <img
+        [src]="categData.image"
+        class="w-full object-contain"
+        [alt]="categData.name"
+      />
+        <h2 class="text-2xl text-center text-green-500">{{categData.name}}</h2>
+    </div>
+
+    
+    </div> 
+  
+</section>
+
+} -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@if (categData) {
+ <section >
+    <div >
+        <h3>Populer Products:-</h3>
+
+
+        <div class="parent grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+
+            @for (cat of categData; track cat._id) {
+                <div class=" card border border-green-400/50 rounded-md overflow-hidden shadow relative p-1">
+                   <div [routerLink]="['/details', cat._id]" >
+                     <div class="card-img">
+                        <img [src]="cat.imageCover" class="w-full h-[250px] object-contain" alt="">
+                    </div>
+                    <div class="card-body px-2 py-4">
+                        <h4 class="text-green-500 text-xs">{{cat.category.name}}</h4>
+                        <h3 class="font-medium">{{cat.title.split( ' ', 2).join(' ')}}</h3>
+                        <div class="flex justify-between items-center">
+                            <span>{{cat.price}} EGP</span>
+                            <div class="flex items-center">
+                                <i class="fa fa-star text-yellow-300 "></i>
+                                <span class="text-gray-500">{{cat.ratingsAverage}}</span>
+                            </div>
+                        </div>
+                    </div>
+                   </div>
+                                    <!-- زرار القلب لإضافة المنتج للـ wishlist -->
+<button 
+  (click)="removeItem(cat._id)"  
+  class="absolute top-2 right-2 z-10 text-xl"
+>
+  <i 
+    class="fa-heart"
+    [class.fa-solid]="wishIds.includes(cat._id)"
+    [class.fa-regular]="!wishIds.includes(cat.id)"
+    [class.text-red-600]="wishIds.includes(cat._id)"
+    [class.text-gray-400]="!wishIds.includes(cat.id)"
+  ></i>
+</button>
+                </div>
+                
+            }
+
+
+             
+        </div>
+    </div>
+</section> 
+
+
+
+
+
+
+}

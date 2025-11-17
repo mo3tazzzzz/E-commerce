@@ -1,0 +1,32 @@
+{
+    "navbar":{
+        "home":"Home",
+        "cart":"Cart",
+        "products":"Products",
+        "categoris":"Categoris",
+        "brands":"Brands",
+        "signout":"Signout",
+        "login":"Login",
+        "register":"Register",
+        "Language":"Language"
+    },
+
+    "login":{
+        "login":"Login",
+        "email":"Email",
+        "password":"Password",
+        "ForgotPassword?":"Forgot password?"
+    },
+
+    "register":{
+        "registernow":"Register Now",
+        "name":"Name",
+        "email":"Email",
+        "password":"Password",
+        "repassword":"Repassword",
+        "phone":"Phone",
+        "register":"Register"
+    }
+
+
+}

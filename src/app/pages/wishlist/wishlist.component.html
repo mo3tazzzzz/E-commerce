@@ -1,0 +1,38 @@
+<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+    
+   @for (prod of wishlistProducts  ; track prod._id){
+  <div  class="card border p-3 rounded shadow">
+    
+    
+    
+    
+     <div [routerLink]="['/details', prod._id]" >
+      <img [src]="prod.imageCover" class="w-full h-48 object-contain">
+
+    <h3>{{ prod.title }}</h3>
+      
+      <p class="text-gray-700 my-2">{{prod.description}}</p>
+      <h3 class="text-green-600">{{prod.category.name}}</h3>
+
+      <div class="flex justify-between items-center">
+        <span>{{prod.price}} EGP</span>
+        <div class="flex items-center">
+          <i class="fas fa-star text-yellow-300"></i>
+          <span class="text-gray-500 ms-1">{{prod.ratingsAverage}}</span>
+        </div>
+      </div>
+
+
+    </div>
+  
+
+    <button class="text-xl text-red-600" (click)="removeItem(prod._id)">
+      Remove
+    </button>
+  </div>
+}
+</div>
+
+
+
+
