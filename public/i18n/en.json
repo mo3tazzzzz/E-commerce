@@ -15,7 +15,8 @@
         "login":"Login",
         "email":"Email",
         "password":"Password",
-        "ForgotPassword?":"Forgot password?"
+        "ForgotPassword?":"Forgot password?",
+        "CreateAccount":"Create Account"
     },
 
     "register":{
